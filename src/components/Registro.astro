@@ -1,0 +1,168 @@
+---
+const planes = [
+  { valor: 'basic', nombre: 'Basic', detalle: '$3.00/lb' },
+  { valor: 'prime', nombre: 'Prime', detalle: '$3.50/lb' },
+  { valor: 'business', nombre: 'Business', detalle: '$2.75/lb' },
+];
+---
+
+<section id="registro" class="registro">
+  <div class="container">
+    <div class="registro-grid">
+      <div class="registro-info">
+        <p class="kicker" style="color:var(--azul); font-weight:800; text-transform:uppercase; letter-spacing:0.08em; font-size:13px;">Registro</p>
+        <h2>Si aún no compras, crea tu <span class="highlight">casillero gratis</span></h2>
+        <p>
+          Regístrate ahora y recibe al instante tu casillero personal en Miami, FL.
+          Empieza a comprar en tus tiendas favoritas de Estados Unidos hoy mismo.
+        </p>
+        <ul>
+          <li>Casillero gratuito, sin membresías</li>
+          <li>Recibes tu dirección de Miami al registrarte</li>
+          <li>Peso real, sin cobros por volumen</li>
+          <li>Seguimiento claro desde tu plataforma</li>
+        </ul>
+
+        <div class="direccion-preview">
+          <div style="font-weight:800; color:var(--azul-oscuro); margin-bottom:6px;">Tu dirección en Miami (ejemplo)</div>
+          SB Logistics — Tu código aquí<br />
+          12600 NW 27th Ave, Suite 210<br />
+          Miami, FL 33167, USA
+        </div>
+      </div>
+
+      <div>
+        <form class="registro-form" id="registro-form" novalidate>
+          <h3>Crea tu casillero</h3>
+          <p class="sub">Completa tus datos. Es gratis y toma menos de 1 minuto.</p>
+
+          <div class="campo">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej: María González" required />
+          </div>
+
+          <div class="campo">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="tucorreo@ejemplo.com" required />
+          </div>
+
+          <div class="campo">
+            <label for="telefono">Teléfono (WhatsApp)</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="+507 6000-0000" />
+          </div>
+
+          <div class="campo">
+            <label for="password">Contraseña</label>
+            <input type="password" id="password" name="password" placeholder="Mínimo 6 caracteres" required minlength="6" />
+          </div>
+
+          <div class="campo">
+            <label>Selecciona tu plan</label>
+            <div class="campo-plan">
+              {planes.map((p) => (
+                <label>
+                  <input type="radio" name="plan" value={p.valor} checked={p.valor === 'basic'} />
+                  {p.nombre}
+                  <small>{p.detalle}</small>
+                </label>
+              ))}
+            </div>
+          </div>
+
+          <button class="btn btn-naranja" type="submit" style="width:100%;" id="btn-registrar">
+            Crear mi casillero gratis
+          </button>
+
+          <div class="form-msg" id="form-msg" role="status"></div>
+        </form>
+
+        <div class="casillero-resultado hidden" id="casillero-resultado">
+          <div class="casillero-card">
+            <div class="label">¡Bienvenido(a)! Este es tu nuevo casillero</div>
+            <div class="codigo" id="cas-codigo">SB-XXXXXX</div>
+            <div class="label">Dirección de envíos (Miami)</div>
+            <pre id="cas-direccion"></pre>
+            <div class="label" style="margin-bottom:4px;">Tus datos</div>
+            <p style="font-size:14px; opacity:0.9;" id="cas-datos"></p>
+            <a class="btn btn-outline" href="#" style="margin-top:16px;" id="cas-otro">Registrar otro casillero</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('registro-form') as HTMLFormElement | null;
+  const msg = document.getElementById('form-msg') as HTMLElement | null;
+  const btn = document.getElementById('btn-registrar') as HTMLButtonElement | null;
+  const resultado = document.getElementById('casillero-resultado') as HTMLElement | null;
+  const casCodigo = document.getElementById('cas-codigo') as HTMLElement | null;
+  const casDireccion = document.getElementById('cas-direccion') as HTMLElement | null;
+  const casDatos = document.getElementById('cas-datos') as HTMLElement | null;
+  const casOtro = document.getElementById('cas-otro') as HTMLAnchorElement | null;
+
+  function mostrarError(texto: string) {
+    if (!msg) return;
+    msg.className = 'form-msg error';
+    msg.textContent = texto;
+  }
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg!.className = 'form-msg';
+    msg!.textContent = '';
+
+    const nombre = (form.querySelector('#nombre') as HTMLInputElement).value.trim();
+    const email = (form.querySelector('#email') as HTMLInputElement).value.trim();
+    const telefono = (form.querySelector('#telefono') as HTMLInputElement).value.trim();
+    const password = (form.querySelector('#password') as HTMLInputElement).value;
+    const plan = (form.querySelector('input[name="plan"]:checked') as HTMLInputElement)?.value ?? 'basic';
+
+    if (nombre.length < 2) return mostrarError('Ingresa tu nombre completo.');
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return mostrarError('Ingresa un correo electrónico válido.');
+    if (password.length < 6) return mostrarError('La contraseña debe tener al menos 6 caracteres.');
+
+    btn!.disabled = true;
+    btn!.textContent = 'Creando tu casillero…';
+
+    try {
+      const res = await fetch('/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ nombre, email, telefono, password, plan }),
+      });
+      const data = await res.json();
+
+      if (!data.ok) {
+        btn!.disabled = false;
+        btn!.textContent = 'Crear mi casillero gratis';
+        return mostrarError(data.error || 'Hubo un error. Inténtalo de nuevo.');
+      }
+
+      msg!.className = 'form-msg success';
+      msg!.textContent = '¡Listo! Tu casillero fue creado. Guarda tus datos:';
+
+      casCodigo!.textContent = data.casillero.codigo;
+      casDireccion!.textContent = data.casillero.direccion.join('\n');
+      casDatos!.textContent = `Nombre: ${data.casillero.nombre} · Correo: ${data.casillero.email} · Plan: ${data.casillero.plan}`;
+
+      resultado?.classList.remove('hidden');
+      form?.scrollIntoView({ behavior: 'smooth' });
+      btn!.disabled = false;
+      btn!.textContent = 'Crear mi casillero gratis';
+    } catch {
+      btn!.disabled = false;
+      btn!.textContent = 'Crear mi casillero gratis';
+      mostrarError('No se pudo conectar. Revisa tu internet e inténtalo de nuevo.');
+    }
+  });
+
+  casOtro?.addEventListener('click', (e) => {
+    e.preventDefault();
+    resultado?.classList.add('hidden');
+    msg!.className = 'form-msg';
+    msg!.textContent = '';
+    form?.reset();
+  });
+</script>

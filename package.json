@@ -1,0 +1,18 @@
+{
+  "name": "sb-logistics",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "SB Logistics — Casillero en Miami y envíos a Panamá",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.0.0",
+    "astro": "^5.0.0",
+    "better-sqlite3": "^11.0.0"
+  }
+}

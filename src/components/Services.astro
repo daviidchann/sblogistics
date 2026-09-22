@@ -1,0 +1,49 @@
+---
+const servicios = [
+  {
+    icono: '🛍️',
+    titulo: 'Servicio de compra asistida',
+    texto:
+      '¿No sabes comprar o prefieres que alguien lo haga por ti? Verificamos el producto, realizamos la compra en Estados Unidos y te acompañamos en todo el proceso.',
+    enlace: '#contacto',
+  },
+  {
+    icono: '✈️',
+    titulo: 'Carga aérea',
+    texto:
+      'La opción más rápida para tus compras. Vuelos frecuentes, entregas ágiles y seguimiento claro. Cobro por libra real, sin sorpresas.',
+    alt: true,
+    enlace: '#tarifas',
+  },
+  {
+    icono: '🚢',
+    titulo: 'Carga marítima',
+    texto:
+      'La alternativa más conveniente para compras grandes. Perfecta para muebles, electrodomésticos o pedidos por volumen. Ideal cuando no hay apuro.',
+    enlace: '#contacto',
+  },
+];
+---
+
+<section id="servicios">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Nuestros servicios</p>
+      <h2>Te acompañamos para traer tus compras de <span class="highlight">Estados Unidos a Panamá</span></h2>
+      <p>Tú eliges cómo comprar. Nosotros te ayudamos en cada paso.</p>
+    </div>
+
+    <div class="grid-3">
+      {
+        servicios.map((s) => (
+          <div class="card">
+            <div class={'servicio-icono' + (s.alt ? ' alt' : '')}>{s.icono}</div>
+            <h3>{s.titulo}</h3>
+            <p>{s.texto}</p>
+            <a class="link-mas" href={s.enlace}>Ver más detalles →</a>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,50 @@
+---
+const faqs = [
+  {
+    q: '¿Cómo creo mi casillero en SB Logistics?',
+    a: 'Regístrate en el formulario de esta página con tu nombre, correo y teléfono. En menos de 1 minuto recibirás tu código de casillero y tu dirección en Miami lista para usar.',
+  },
+  {
+    q: '¿Debo pagar una membresía o cuota mensual?',
+    a: 'No. Tu casillero es completamente gratis y sin membresías. Solo pagas el envío cuando recibes tus paquetes.',
+  },
+  {
+    q: '¿Cuánto tarda en llegar mi paquete a Panamá?',
+    a: 'Por carga aérea suele llegar en 1 a 3 días hábiles desde Miami. Por carga marítima, el tiempo depende del volumen, ideal para compras grandes.',
+  },
+  {
+    q: '¿Cómo se calcula el costo del envío?',
+    a: 'Se cobra por libra real (peso físico), sin cobros por volumen ni tamaño de caja. La tarifa depende del plan: Basic $3.00, Prime $3.50 o Business $2.75 por libra.',
+  },
+  {
+    q: '¿Puedo recibir mi paquete en casa?',
+    a: 'Sí. Ofrecemos entrega a domicilio dentro del área metropolitana. Es gratuita para usuarios Prime y Business.',
+  },
+  {
+    q: '¿Qué métodos de pago aceptan?',
+    a: 'Aceptamos efectivo, transferencia bancaria, Yappy y tarjeta de débito/crédito. Consúltanos por WhatsApp para tu método preferido.',
+  },
+  {
+    q: '¿Qué artículos están prohibidos?',
+    a: 'No se transportan armas, explosivos, drogas, dinero en efectivo ni mercancías ilegales. Puedes consultar la lista completa escribiéndonos.',
+  },
+];
+---
+
+<section id="faq" style="background:var(--claro);">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Preguntas frecuentes</p>
+      <h2>Respuestas claras a las dudas más comunes</h2>
+    </div>
+
+    <div class="faq">
+      {faqs.map((f) => (
+        <details class="faq-item">
+          <summary>{f.q}</summary>
+          <div class="faq-body">{f.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

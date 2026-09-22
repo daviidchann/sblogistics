@@ -1,0 +1,12 @@
+---
+const marcas = ['Amazon', 'eBay', 'Shein', 'Best Buy', 'Sephora', 'Adidas', 'Nike', 'Walmart', 'Costco', 'Home Depot'];
+---
+
+<div class="marcas">
+  <div class="container">
+    <p>Compra en tus tiendas favoritas de Estados Unidos</p>
+    <div class="marcas-lista">
+      {marcas.map((m) => <span>{m}</span>)}
+    </div>
+  </div>
+</div>

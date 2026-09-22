@@ -1,0 +1,44 @@
+---
+const beneficios = [
+  {
+    icono: '💬',
+    titulo: 'Atención personalizada',
+    texto: 'Habla con personas reales. Soporte por WhatsApp para orientarte y dar seguimiento claro a tus envíos.',
+  },
+  {
+    icono: '🏠',
+    titulo: 'Entrega a domicilio',
+    texto: 'Recibe tus paquetes en casa u oficina dentro del área metropolitana. Gratis para usuarios Prime y Business.',
+  },
+  {
+    icono: '✈️',
+    titulo: 'Vuelos frecuentes desde Miami',
+    texto: 'Enviamos todos los días desde Miami a Panamá, con entregas ágiles y flujo constante de paquetes.',
+  },
+  {
+    icono: '⚖️',
+    titulo: 'Peso real, sin volumen',
+    texto: 'No importa el tamaño de la caja: pagas solo por el peso real del paquete. Sin cobros por volumen ni sorpresas.',
+  },
+];
+---
+
+<section id="beneficios" style="background:var(--claro);">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Beneficios</p>
+      <h2>Diseñamos nuestro servicio para que compres <span class="highlight">sin complicaciones</span></h2>
+      <p>Claro, acompañado y transparente en cada envío.</p>
+    </div>
+
+    <div class="grid-4">
+      {beneficios.map((b) => (
+        <div class="card beneficio">
+          <div class="servicio-icono">{b.icono}</div>
+          <h3>{b.titulo}</h3>
+          <p>{b.texto}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,53 @@
+---
+import logo from '../assets/SBLLogo.jpeg';
+---
+
+<header class="site-header">
+	<div class="container header-inner">
+		<a href="/" class="logo-sb" aria-label="SB Logistics - Inicio">
+			<img src={logo.src} alt="SB Logistics logo" class="logo-image" />
+			<span class="logo-copy">
+				SB Logistics
+				<small>Casillero Miami</small>
+			</span>
+		</a>
+
+		<button
+			class="mobile-toggle"
+			id="menu-toggle"
+			aria-label="Abrir menú"
+			aria-expanded="false">☰</button
+		>
+
+		<nav class="header-nav" id="menu">
+			<ul>
+				<li><a href="/#servicios">Servicios</a></li>
+				<li><a href="/#tarifas">Tarifas</a></li>
+				<li><a href="/#beneficios">Beneficios</a></li>
+				<li><a href="/#faq">Preguntas frecuentes</a></li>
+				<li><a href="/#contacto">Contacto</a></li>
+			</ul>
+		</nav>
+
+		<div class="header-acciones">
+			<a class="btn btn-naranja" href="/#registro">Crear mi casillero</a>
+		</div>
+	</div>
+</header>
+
+<script>
+	const toggle = document.getElementById('menu-toggle');
+	const menu = document.getElementById('menu');
+
+	toggle?.addEventListener('click', () => {
+		const open = menu?.classList.toggle('open');
+		toggle.setAttribute('aria-expanded', String(open));
+	});
+
+	menu?.addEventListener('click', (e) => {
+		if ((e.target as HTMLElement).closest('a')) {
+			menu.classList.remove('open');
+			toggle?.setAttribute('aria-expanded', 'false');
+		}
+	});
+</script>

@@ -1,0 +1,39 @@
+---
+const pasos = [
+  {
+    titulo: 'Crea tu casillero',
+    texto: 'Regístrate gratis y recibe al instante tu dirección y código en Miami, FL.',
+  },
+  {
+    titulo: 'Compra en tus tiendas',
+    texto: 'Usa tu dirección de SB Logistics como destino en Amazon, Walmart, eBay y más.',
+  },
+  {
+    titulo: 'Recibimos en Miami',
+    texto: 'Tus paquetes llegan a nuestro almacén. Te avisamos al instante.',
+  },
+  {
+    titulo: 'Envío a Panamá',
+    texto: 'Los enviamos por aire o mar, y los retiras en sucursal o los recibes en casa.',
+  },
+];
+---
+
+<section style="background:var(--claro);">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Así de fácil</p>
+      <h2>¿Cómo funciona?</h2>
+      <p>Cuatro pasos simples para traer tus compras de Estados Unidos a Panamá.</p>
+    </div>
+
+    <div class="grid-4 steps">
+      {pasos.map((p) => (
+        <div class="step">
+          <h3>{p.titulo}</h3>
+          <p>{p.texto}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

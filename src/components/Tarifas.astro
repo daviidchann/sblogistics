@@ -1,0 +1,89 @@
+---
+const tarifas = [
+  {
+    nombre: 'Basic',
+    precio: '$3.00',
+    unidad: 'por libra (+ ITBMS)',
+    popular: false,
+    enlace: '/#registro',
+    etiqueta: 'Crear mi casillero',
+    items: [
+      'Casillero gratis (sin membresías)',
+      'Vuelos frecuentes desde Miami',
+      'No cobramos por tamaño del paquete',
+      'Web App con seguimiento',
+      'Atención personalizada',
+      'Seguro de carga',
+    ],
+  },
+  {
+    nombre: 'Prime',
+    precio: '$3.50',
+    unidad: 'por libra (+ ITBMS)',
+    popular: true,
+    enlace: '/#registro',
+    etiqueta: 'Crear mi casillero',
+    items: [
+      'Casillero gratis (sin membresías)',
+      'Vuelos frecuentes desde Miami',
+      'No cobramos por tamaño del paquete',
+      'Web App con seguimiento',
+      'Atención personalizada',
+      'Seguro de carga',
+      'Delivery gratis',
+      'Devoluciones gratis',
+    ],
+  },
+  {
+    nombre: 'Business',
+    precio: '$2.75',
+    unidad: 'por libra (+ ITBMS · mín. 50 lb/mes)',
+    popular: false,
+    enlace: 'https://wa.me/50760000000?text=Hola%2C%20quiero%20el%20plan%20Business',
+    etiqueta: 'Contáctanos',
+    items: [
+      'Casillero empresarial gratis',
+      'Vuelos frecuentes desde Miami',
+      'No cobramos por tamaño del paquete',
+      'Web App con seguimiento',
+      'Seguro de carga',
+      'Delivery gratis',
+      'Ejecutivo de cuenta dedicado',
+    ],
+  },
+];
+---
+
+<section id="tarifas">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Tarifas aéreas</p>
+      <h2>Elige la tarifa que mejor se adapte a ti</h2>
+      <p>Peso real, sin recargos por volumen. Sin membresías ni cuotas ocultas.</p>
+    </div>
+
+    <div class="tarifas-wrap">
+      {
+        tarifas.map((t) => (
+          <div class={'tarifa' + (t.popular ? ' popular' : '')}>
+            {t.popular && <span class="badge">Más popular</span>}
+            <h3>{t.nombre}</h3>
+            <div class="precio">
+              <span class="monto">{t.precio}</span>
+              <span class="unidad">{t.unidad}</span>
+            </div>
+            <ul>
+              {t.items.map((item) => <li>{item}</li>)}
+            </ul>
+            {t.enlace.startsWith('http') ? (
+              <a class="btn btn-outline-azul" href={t.enlace} target="_blank" rel="noopener">{t.etiqueta}</a>
+            ) : (
+              <a class="btn btn-azul" href={t.enlace}>{t.etiqueta}</a>
+            )}
+          </div>
+        ))
+      }
+    </div>
+    <p class="nota" style="text-align:center; margin-top:22px; font-size:13px; color:var(--gris);">Aplican términos y condiciones.</p>
+  </div>
+</section>

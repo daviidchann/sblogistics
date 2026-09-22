@@ -1,0 +1,57 @@
+---
+const testimonios = [
+  {
+    texto:
+      'Con SB Logistics manejamos nuestras compras de forma ordenada y sin estrés. Cuando necesitamos traer un pedido especial para la tienda, sabemos que llegará rápido y en buen estado.',
+    nombre: 'Melanie Vargas',
+    cargo: 'Gerente — Von Fuster',
+    iniciales: 'MV',
+  },
+  {
+    texto:
+      'Llevo más de tres años trabajando con el equipo de SB Logistics y nunca he tenido un solo inconveniente. El servicio es ágil, confiable y el seguimiento siempre es claro.',
+    nombre: 'Santiago Cuartas',
+    cargo: 'Abogado Corporativo',
+    iniciales: 'SC',
+  },
+  {
+    texto:
+      'He probado distintos proveedores y SB Logistics ha sido el más consistente. Mis paquetes llegan a tiempo y en buen estado, y la comunicación con el equipo es excelente.',
+    nombre: 'Manuel Cordovez',
+    cargo: 'Director — Airepuro',
+    iniciales: 'MC',
+  },
+  {
+    texto:
+      'Los paquetes suelen llegar en 1 o 2 días. El sistema es práctico y fácil de usar, y la ubicación permite retirar paquetes rápido y sin complicaciones.',
+    nombre: 'Diego De Ycaza',
+    cargo: 'Co-Founder — Klarity Pro',
+    iniciales: 'DD',
+  },
+];
+---
+
+<section id="testimonios">
+  <div class="container">
+    <div class="section-head">
+      <p class="kicker">Testimonios</p>
+      <h2>Lo que dicen nuestros clientes</h2>
+      <p>Miles de clientes satisfechos confían en nosotros.</p>
+    </div>
+
+    <div class="grid-2">
+      {testimonios.map((t) => (
+        <div class="testimonio">
+          <p class="quote">“{t.texto}”</p>
+          <div class="autor">
+            <div class="avatar">{t.iniciales}</div>
+            <div>
+              <strong>{t.nombre}</strong>
+              <span>{t.cargo}</span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
