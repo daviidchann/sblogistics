@@ -1,48 +1,62 @@
 ---
 interface Stats {
-  value: string;
-  label: string;
+	value: string;
+	label: string;
 }
 
 const stats: Stats[] = [
-  { value: '+350K', label: 'Paquetes entregados' },
-  { value: '+65K', label: 'Entregas a domicilio' },
-  { value: '10K', label: 'Usuarios registrados' },
-  { value: '6 años', label: 'De trayectoria' },
+	{ value: '+350K', label: 'Paquetes entregados' },
+	{ value: '+65K', label: 'Entregas a domicilio' },
+	{ value: '10K', label: 'Usuarios registrados' },
+	{ value: '6 años', label: 'De trayectoria' },
 ];
 ---
 
 <section class="hero">
-  <div class="container hero-inner">
-    <div class="section-head hero-head" style="text-align:left; margin:0 0 48px;">
-      <p class="kicker" style="color:var(--celeste);">SB Logistics · Miami → Panamá</p>
-      <h2 style="font-size:clamp(30px, 5vw, 52px);">Comprar en línea nunca fue tan fácil.</h2>
-      <p>
-        Trae tus paquetes de Estados Unidos a Panamá rápido y sin complicaciones.
-        Crea tu casillero gratis en Miami en menos de 1 minuto.
-      </p>
-      <div class="hero-acciones" style="display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;">
-        <a class="btn btn-naranja" href="/#registro">Crear mi casillero gratis</a>
-        <a
-          class="btn btn-whatsapp"
-          href="https://wa.me/50760000000?text=Hola%2C%20quiero%20info%20sobre%20SB%20Logistics"
-          target="_blank"
-          rel="noopener"
-        >WhatsApp</a>
-      </div>
-    </div>
+	<div class="container hero-inner">
+		<div
+			class="section-head hero-head"
+			style="text-align:left; margin:0 0 48px;">
+			<p class="kicker" style="color:var(--celeste);">
+				SB Logistics · Miami → Panamá
+			</p>
+			<h2 style="font-size:clamp(30px, 5vw, 52px);">
+				Comprar en línea nunca fue tan fácil.
+			</h2>
+			<p>
+				Trae tus paquetes de Estados Unidos a Panamá rápido y sin
+				complicaciones. Crea tu casillero gratis en Miami en menos de 1 minuto.
+			</p>
+			<div
+				class="hero-acciones"
+				style="display:flex; gap:14px; flex-wrap:wrap; margin-top:28px;">
+				<a
+					class="btn btn-naranja"
+					href="https://sblogisticsgroup.multitrack.trackingpremium.us/"
+					>Crear mi casillero gratis</a
+				>
+				<a
+					class="btn btn-whatsapp"
+					href="https://wa.me/50768168338?text=Hola%2C%20quiero%20info%20sobre%20SB%20Logistics"
+					target="_blank"
+					rel="noopener">WhatsApp</a
+				>
+			</div>
+		</div>
 
-    <div class="grid-4" style="gap:16px;">
-      {
-        stats.map((s) => (
-          <div
-            style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); border-radius:16px; padding:22px; backdrop-filter:blur(4px);"
-          >
-            <p style="font-size:26px; font-weight:900; color:#fff;">{s.value}</p>
-            <p style="color:rgba(255,255,255,0.85); font-size:14px;">{s.label}</p>
-          </div>
-        ))
-      }
-    </div>
-  </div>
+		<div class="grid-4" style="gap:16px;">
+			{
+				stats.map((s) => (
+					<div style="background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.18); border-radius:16px; padding:22px; backdrop-filter:blur(4px);">
+						<p style="font-size:26px; font-weight:900; color:#fff;">
+							{s.value}
+						</p>
+						<p style="color:rgba(255,255,255,0.85); font-size:14px;">
+							{s.label}
+						</p>
+					</div>
+				))
+			}
+		</div>
+	</div>
 </section>
